@@ -12,10 +12,54 @@ class CreateSoporte extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('familiares', function(Blueprint $table)
-		{
-			//
+		Schema::create('departamentos', function(Blueprint $table){
+			$table->increments('id');
+			$table->string('codigo','2');
+			$table->string('nombre','50');
 		});
+
+		Schema::create('provincias', function(Blueprint $table){
+			$table->increments('id');
+			$table->string('nombre','200');
+			$table->unsignedInteger('departamento_id');
+			$table->foreign('departamento_id')->references('id')->on('departamentos')->onUpdate('cascade')->onDelete('cascade');			
+		});
+
+		Schema::create('distritos', function(Blueprint $table){
+			$table->increments('id');
+			$table->string('nombre','200');
+			$table->unsignedInteger('provincia_id');
+			$table->foreign('provincia_id')->references('id')->on('provincias')->onUpdate('cascade')->onDelete('cascade');			
+		});
+
+		Schema::create('aniosacademicos', function(Blueprint $table){
+			$table->bigincrements('id');
+			$table->string('anio','4');
+			$table->longtext('denominacion');			
+		});
+
+		Schema::create('niveles', function(Blueprint $table){
+			$table->bigincrements('id');
+			$table->string('nombre','200');			
+		});
+
+		Schema::create('grados', function(Blueprint $table)
+		{
+			$table->bigincrements('id');
+			$table->string('descripcion','200');
+			$table->unsignedBigInteger('nivel_id');
+			$table->foreign('nivel_id')->references('id')->on('niveles')->onDelete('cascade')->onUpdate('cascade');
+		});
+
+		Schema::create('secciones', function(Blueprint $table)
+		{
+			$table->bigincrements('id');
+			$table->string('descripcion','45');
+			$table->integer('capacidad');
+			$table->unsignedBigInteger('grado_id');			
+			$table->foreign('grado_id')->references('id')->on('grados')->onDelete('cascade')->onUpdate('cascade');
+		});
+
 	}
 
 	/**
@@ -25,10 +69,12 @@ class CreateSoporte extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('familiares', function(Blueprint $table)
-		{
-			//
-		});
+		Schema::drop('secciones');
+		Schema::drop('grados');
+		Schema::drop('niveles');
+		Schema::drop('distritos');
+		Schema::drop('provincias');
+		Schema::drop('departamentos');
 	}
 
 }

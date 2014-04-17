@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsers extends Migration {
+class CreateCronograma extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,13 +13,6 @@ class CreateUsers extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('users', function(Blueprint $table)
-		{
-			$table->bigincrements('id');
-			$table->string('login','20');
-			$table->string('password','30');			
-			$table->timestamps();
-		});
 	}
 
 	/**
@@ -30,7 +23,6 @@ class CreateUsers extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('users');
 	}
 
 }
