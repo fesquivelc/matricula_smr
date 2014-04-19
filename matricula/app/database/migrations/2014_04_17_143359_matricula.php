@@ -21,8 +21,9 @@ class Matricula extends Migration {
 			$table->date('fnacimiento');
 			$table->string('ginstruccion','2');
 			$table->string('ocupacion','60');
-			$table->estado('estado','1');
-			$table->bigInteger('user_id')->nullable();
+			$table->string('estado','1');
+			$table->string('direccion','250')->nullable();
+			$table->unsignedBigInteger('user_id')->nullable();
 			$table->primary('dni');
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
@@ -34,9 +35,9 @@ class Matricula extends Migration {
 			$table->string('apmaterno','200');
 			$table->string('nombres','200');
 			$table->date('fnacimiento');
-			$table->estado('estado','1');
+			$table->string('estado','1');
 			$table->primary('dni');
-			$table->bigInteger('user_id')->nullable();			
+			$table->unsignedBigInteger('user_id')->nullable();			
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
 		});
@@ -54,8 +55,11 @@ class Matricula extends Migration {
 			$table->integer('nhermanos');
 			$table->integer('lugarhermanos');
 			$table->string('direccion');
-			$table->string('telefono','9');					
-			$table->foreign('estudiante_dni')->references('dni')->on('estudiantes')->onUpdate('cascade')->onDelete('cascade');			
+			$table->string('telefono','9');
+			$table->unsignedInteger('distrito_id');
+
+			$table->foreign('estudiante_dni')->references('dni')->on('estudiantes')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('distrito_id')->references('id')->on('distritos')->onUpdate('cascade')->onDelete('cascade');
 		});
 
 		Schema::create('estudiantes_familiares', function(Blueprint $table)
@@ -75,10 +79,10 @@ class Matricula extends Migration {
 			$table->bigincrements('id');
 			$table->datetime('fecha');
 			$table->string('estado','1');
-			$table->unsignedBigInteger('estudiante_dni');
+			$table->String('estudiante_dni');
 			$table->unsignedBigInteger('anio_id');
 			$table->unsignedBigInteger('seccion_id');
-			$table->unsignedBigInteger('apoderado_dni');
+			$table->string('apoderado_dni');
 
 
 			$table->foreign('estudiante_dni')->references('dni')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');
