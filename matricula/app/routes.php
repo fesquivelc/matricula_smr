@@ -13,8 +13,20 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	$html = View::make('layout');
+	return $html;
 });
 
+Route::get('/hola/', function()
+{
+	return 'Hola a todos';
+});
 
-
+Route::get('/generar', function()
+{
+    $html = '<html><body>';
+    $html.= '<p style="color:red">Generando un sencillo pdf ';
+    $html.= 'de forma realmente sencilla.</p>';
+    $html.= '</body></html>';
+    return PDF::load($html, 'A4', 'landscape')->show();
+});
