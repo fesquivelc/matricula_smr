@@ -36,7 +36,7 @@
             <p> @yield('instrucciones') </p>
           </div>
         </div>
-        @yield('formulario')
+        @yield('formularios')
       </div>
       
       @section('javascript')

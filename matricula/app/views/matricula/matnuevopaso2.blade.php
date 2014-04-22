@@ -10,9 +10,9 @@ Selección de estudiante
 
 @section('pasos')
 <ul class="nav nav-pills">
-  <li><a href="#">1. Seleccionar alumno</a></li>
-  <li class="active"><a href="#">2. Ingresar numero de operacion</a></li>
-  <li><a href="#">3. Ficha de matrícula</a></li>
+  <li><a href="">1. Seleccionar alumno</a></li>
+  <li class="active"><a href="">2. Ingresar numero de operacion</a></li>
+  <li><a href="">3. Ficha de matrícula</a></li>
 </ul>
 @stop
 

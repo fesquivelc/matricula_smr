@@ -101,7 +101,7 @@ class AuthController extends \BaseController {
 		{
 			if (Auth::user()->activo) { //comprobamos que el usuario este activo
 				# code...
-				return Redirect::to('/');
+				return Redirect::to('/paso1');
 			}
             // De ser datos válidos nos mandara a la bienvenida
 			

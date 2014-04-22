@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -41,6 +42,11 @@ Route::get('/logout', 'AuthController@logOut');
 Route::group(array('before' => 'auth'), function()
 {
     // Esta será nuestra ruta de bienvenida.
+
+    Route::get('/', function(){
+        return Redirect::to('/paso1');
+    });
+
     Route::get('/paso1', function()
     {
         return View::make('matricula/matnuevopaso1');
