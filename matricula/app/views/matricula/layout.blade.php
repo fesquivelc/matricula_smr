@@ -18,22 +18,36 @@
       <![endif]-->
     </head>
     <body>
-      <h1>Colegio Santa María Reina</h1>
-      <h2>Sistema de matrícula </h2>
 
-      <hr>
 
-      @yield('pasos')
-      
-      <hr>
-      
 
       <div class="container">
-        <div class="panel panel-primary">
+        <h1>Colegio Privado Santa María Reina</h1>
+        <h2>Sistema de matrículas online </h2>
+
+        <hr>
+
+        <div class="navbar navbar-inverse">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="" >Proceso de matrícula</a>
+          </div>
+          <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{url('/logout')}}">Cerrar sesión</a></li>            
+            </ul>
+
+          </div>
+          
+        </div>
+
+        @yield('pasos')
+
+        <hr>
+        <div class="panel panel-@yield('color-panel')">
           <!-- Default panel contents -->
-          <div class="panel-heading">Instrucciones</div>
+          <div class="panel-heading"> @yield('titulo-panel') </div>
           <div class="panel-body">
-            <p> @yield('instrucciones') </p>
+            <p> @yield('cuerpo-panel') </p>
           </div>
         </div>
         @yield('formularios')

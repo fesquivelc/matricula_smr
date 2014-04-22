@@ -23,9 +23,7 @@ class Matricula extends Migration {
 			$table->string('ocupacion','60');
 			$table->boolean('vive');
 			$table->string('direccion','250')->nullable();
-			$table->unsignedBigInteger('user_id')->nullable();
-
-			$table->timestamps();
+			$table->unsignedBigInteger('user_id')->nullable();			
 
 			$table->primary('dni');
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
@@ -40,8 +38,7 @@ class Matricula extends Migration {
 			$table->date('fnacimiento');
 			$table->string('estado','1');
 			$table->primary('dni');
-
-			$table->timestamps();
+			
 			// $table->unsignedBigInteger('user_id')->nullable();			
 			// $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 

@@ -16,7 +16,15 @@ Selección de estudiante
 </ul>
 @stop
 
-@section('instrucciones')
+@section('color-panel')
+primary
+@stop
+
+@section('titulo-panel')
+Instrucciones
+@stop
+
+@section('cuerpo-panel')
 <p>A continuación se muestran los alumnos de los que es apoderado. Debe tener en cuenta que sólo pueden matricularse aquellos estudiantes que estén al día en sus pagos.</p>
 
 
@@ -34,12 +42,12 @@ Selección de estudiante
 	@foreach ($estudiantes as $estudiante)
 	<tr>
 		<td> {{$estudiante->appaterno;}} {{$estudiante->apmaterno;}} {{$estudiante->nombres;}}</td>
-		<td> {{$estudiante->ficha}} </td>
+		<td></td>
 		<td></td>
 		<td>
-			@if($estudiante->estado == 'N')
+			@if($estudiante->estado == 'D')
 				<a href="{{url('/deudas/'.$estudiante->dni)}}" class="btn btn-danger btn-sm" role="button">Ver deudas</a>
-			@elseif($estudiante->estado == 'S')
+			@elseif($estudiante->estado == 'N')
 				<a href="{{url('/paso2/'.$estudiante->dni)}}" class="btn btn-primary btn-sm" role="button">Matricular</a>
 			@endif
 		</td>

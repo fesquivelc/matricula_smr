@@ -17,8 +17,6 @@ Route::get('/login', 'AuthController@showLogin');
 
 Route::post('/login','AuthController@postLogin');
 
-Route::get('/logout', 'AuthController@logOut');
-
 // Route::get('/hola/', function()
 // {
 // 	return 'Hola a todos';
@@ -49,15 +47,17 @@ Route::group(array('before' => 'auth'), function()
 
     Route::get('/paso1','MatriculaController@showEstudiantes');
 
-    Route::get('/paso2', 'MatriculaController@showOperacion');
+    Route::get('/paso2/{dni}', 'MatriculaController@showOperacion');
 
     Route::get('/paso3', 'MatriculaController@showFicha');
 
     Route::post('/paso2', 'MatriculaController@postOperacion');
 
     Route::post('/paso3', 'MatriculaController@postFicha');
+
+    Route::get('/deudas/{dni}','MatriculaController@showDeudas');
     // Esta ruta nos servirá para cerrar sesión.
-    Route::get('logout', 'AuthController@logOut');
+    Route::get('/logout', 'AuthController@logOut');
 });
 
 ?>

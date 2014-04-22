@@ -9,6 +9,8 @@ class RequisitoEstudiante extends Eloquent{
 	 */
 	protected $table = 'estudiante_requisito';
 
+	public $timestamps = false;
+
 	public function estudiante(){
 		return $this->belongsTo('Estudiante','estudiante_dni');
 	}

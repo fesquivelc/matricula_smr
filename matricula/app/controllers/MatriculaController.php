@@ -92,5 +92,45 @@ class MatriculaController extends \BaseController {
 		return View::make('matricula/matnuevopaso1',array('estudiantes'=>$estudiantes));
 	}
 
+	public function showDeudas($dni){
+		$estudiante = Estudiante::find($dni);
+
+		$deudas = $estudiante->deudas; 
+
+
+		return View::make('matricula/deudas', array('deudas' => $deudas,'estudiante' => $estudiante));
+	}
+
+	public function showOperacion($dni){
+		$estudiante = Estudiante::find($dni);
+
+		return View::make('matricula/matnuevopaso2', array('estudiante' => $estudiante));
+	}
+
+	public function postOperacion(){
+		$operacion = Input::get('operacion');
+		$dni = Input::get('dni');
+
+		$requisito = Requisito::where('nombre','=','PAGO DE MATRICULA')->first();
+
+		$anioacademico = AnioAcademico::where('anio','=',date('Y'))->first();
+
+		$estudiante = Estudiante::find($dni);
+
+		$reqEstudiante = new RequisitoEstudiante();
+
+		$reqEstudiante->motivo = $operacion;
+
+		$reqEstudiante->presento = true;
+
+		$reqEstudiante->estudiante()->associate($estudiante);
+
+		$reqEstudiante->anioacademico()->associate($anioacademico);
+
+		$reqEstudiante->requisito()->associate($requisito);
+
+		$reqEstudiante->save();
+	}
+
 
 }

@@ -59,7 +59,7 @@ class CreateCronograma extends Migration {
 		//
 		Schema::drop('estudiante_requisito');
 		Schema::drop('requisitos');
-		Schema::drop('cronograma');
+		Schema::drop('cronogramas');
 	}
 
 }

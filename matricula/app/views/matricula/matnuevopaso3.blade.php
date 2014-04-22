@@ -25,7 +25,7 @@ Instrucciones
 @stop
 
 @section('cuerpo-panel')
-<p>Actualice los campos que considere necesarios</p>
+<p>Ingrese el número de operación que se encuentra en el voucher otorgado por el Banco de Crédito. Los datos de la estudiante son:</p>
 <p><strong>DNI:</strong> {{$estudiante->dni}} </p>
 <p><strong>Nombres:</strong> {{$estudiante->nombres}} </p>
 <p><strong>Apellidos:</strong> {{$estudiante->appaterno}} {{$estudiante->apmaterno}} </p>
