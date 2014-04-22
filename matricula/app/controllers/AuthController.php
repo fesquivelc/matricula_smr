@@ -91,17 +91,6 @@ class AuthController extends \BaseController {
 	}
 
 	public function postLogin(){
-		// $rules = [		
-		// 	"username"      => "required|max:30|min:6|unique:users",
-		// 	"password"      => "required|max:30|min:6",		
-		// ];
-
-		// $messages = [
-		// 	"required"	=>	"Este campo es obligatorio",
-		// ];
-
-		// $validator = Validator::make(Input::all(), $rules, $messages);
-
 		$credentials = array(
 			'username' => Input::get('username'),
 			'password' => Input::get('password'),

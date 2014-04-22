@@ -17,5 +17,7 @@ class AnioAcademico extends Eloquent{
 		return $this->hasMany('Matricula','anioacademico_id');
 	}
 
-	public function 
+	public function cronograma(){
+		return $this->hasOne('Cronograma','anioacademico_id');
+	}
 }
