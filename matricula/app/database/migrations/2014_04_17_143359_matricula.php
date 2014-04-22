@@ -74,7 +74,7 @@ class Matricula extends Migration {
 			$table->foreign('familiar_dni')->references('dni')->on('familiares')->onUpdate('cascade')->onDelete('cascade');
 		});
 
-		Schema::create('matricula', function(Blueprint $table)
+		Schema::create('matriculas', function(Blueprint $table)
 		{
 			$table->bigincrements('id');
 			$table->datetime('fecha');

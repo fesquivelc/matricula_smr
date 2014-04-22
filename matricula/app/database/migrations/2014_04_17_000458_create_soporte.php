@@ -13,14 +13,16 @@ class CreateSoporte extends Migration {
 	public function up()
 	{
 		Schema::create('departamentos', function(Blueprint $table){
-			$table->increments('id');
-			$table->string('codigo','2');
+			$table->increments('id');	
 			$table->string('nombre','50');
+			$table->integer('idPais');
+			$table->string('codigo','2');
 		});
 
 		Schema::create('provincias', function(Blueprint $table){
 			$table->increments('id');
 			$table->string('nombre','200');
+			$table->string('codigo','2');
 			$table->unsignedInteger('departamento_id');
 			$table->foreign('departamento_id')->references('id')->on('departamentos')->onUpdate('cascade')->onDelete('cascade');			
 		});
@@ -28,6 +30,7 @@ class CreateSoporte extends Migration {
 		Schema::create('distritos', function(Blueprint $table){
 			$table->increments('id');
 			$table->string('nombre','200');
+			$table->string('codigo','2');
 			$table->unsignedInteger('provincia_id');
 			$table->foreign('provincia_id')->references('id')->on('provincias')->onUpdate('cascade')->onDelete('cascade');			
 		});
