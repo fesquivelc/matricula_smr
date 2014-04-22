@@ -37,7 +37,7 @@ class CreateSoporte extends Migration {
 
 		Schema::create('aniosacademicos', function(Blueprint $table){
 			$table->bigincrements('id');
-			$table->string('anio','4');
+			$table->string('anio','4')->unique();
 			$table->date('finicioclases');
 			$table->date('ffinclases');
 			$table->longtext('denominacion');			
@@ -45,7 +45,7 @@ class CreateSoporte extends Migration {
 
 		Schema::create('niveles', function(Blueprint $table){
 			$table->bigincrements('id');
-			$table->string('nombre','200');			
+			$table->string('nombre','200')->unique();			
 		});
 
 		Schema::create('grados', function(Blueprint $table)

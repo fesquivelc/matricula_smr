@@ -41,10 +41,16 @@ Route::get('/logout', 'AuthController@logOut');
 Route::group(array('before' => 'auth'), function()
 {
     // Esta será nuestra ruta de bienvenida.
-    Route::get('/', function()
+    Route::get('/paso1', function()
     {
-        return View::make('hello');
+        return View::make('matricula/matnuevopaso1');
+    });
+
+    Route::get('/paso2', function(){
+    	return View::make('matricula/matnuevopaso2');
     });
     // Esta ruta nos servirá para cerrar sesión.
     Route::get('logout', 'AuthController@logOut');
 });
+
+?>

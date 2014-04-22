@@ -55,13 +55,7 @@
 	</div>
 	
 	<div class="container" style="max-width:600px;margin-top:2%">
-		<div class="panel panel-primary">
-			<!-- Default panel contents -->
-			<div class="panel-heading">Instrucciones</div>
-			<div class="panel-body">
-				<p>En este paso seleccione el alumno que va a matricular.</p>
-			</div>
-		</div>
+		
 		<div class="panel panel-info">
 			<div class="panel-body">
 				{{-- Preguntamos si hay algún mensaje de error y si hay lo mostramos  --}}
