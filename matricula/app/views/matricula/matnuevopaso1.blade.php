@@ -28,32 +28,23 @@ Selección de estudiante
 		<th>Nombre</th>
 		<th>Nivel</th>
 		<th>Grado</th>
-		<th>Matricular</th>
+		<th></th>
 	</tr>
+	
+	@foreach ($estudiantes as $estudiante)
 	<tr>
-		<td>Francis Esquivel</td>
-		<td>Secundaria</td>
-		<td>4</td>
-		<td><a href="/paso2/" class="btn btn-primary btn-sm" role="button">Matricular</a></td>
+		<td> {{$estudiante->appaterno;}} {{$estudiante->apmaterno;}} {{$estudiante->nombres;}}</td>
+		<td> {{$estudiante->ficha}} </td>
+		<td></td>
+		<td>
+			@if($estudiante->estado == 'N')
+				<a href="{{url('/deudas/'.$estudiante->dni)}}" class="btn btn-danger btn-sm" role="button">Ver deudas</a>
+			@elseif($estudiante->estado == 'S')
+				<a href="{{url('/paso2/'.$estudiante->dni)}}" class="btn btn-primary btn-sm" role="button">Matricular</a>
+			@endif
+		</td>
 	</tr>
-	<tr>
-		<td>Nombre2 Apellidos2</td>
-		<td>Secundaria</td>
-		<td>5</td>
-		<td><a href="/paso2/" class="btn btn-danger btn-sm" role="button">Ver deudas</a></td>
-	</tr>
-	<tr>
-		<td>Nombre3 Apellidos3</td>
-		<td>Secundaria</td>
-		<td>5</td>
-		<td><a href="/paso2/" class="btn btn-info disabled btn-sm" role="button">En espera...</a></td>
-	</tr>
-	<tr>
-		<td>Nombre4 Apellidos4</td>
-		<td>Secundaria</td>
-		<td>5</td>
-		<td><a href="/paso2/" class="btn btn-success disabled btn-sm" role="button">Matriculado</a></td>
-	</tr>
+	@endforeach
 </table>
 
 @stop

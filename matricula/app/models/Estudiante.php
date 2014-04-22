@@ -8,6 +8,7 @@ class Estudiante extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'estudiantes';
+	protected $primaryKey = 'dni';
 
 	public function familiares(){
 		return $this->belongsToMany('Profesor','estudiantes_familiares','estudiante_dni','familiar_dni');
@@ -22,7 +23,7 @@ class Estudiante extends Eloquent{
 	}
 
 	public function matriculas(){
-		return $this->hasMany('Matricula','estudiante_dni')
+		return $this->hasMany('Matricula','estudiante_dni');
 	}
 
 	public function requisitosEstudiante(){

@@ -21,9 +21,12 @@ class Matricula extends Migration {
 			$table->date('fnacimiento');
 			$table->string('ginstruccion','2');
 			$table->string('ocupacion','60');
-			$table->string('estado','1');
+			$table->boolean('vive');
 			$table->string('direccion','250')->nullable();
 			$table->unsignedBigInteger('user_id')->nullable();
+
+			$table->timestamps();
+
 			$table->primary('dni');
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
@@ -37,6 +40,8 @@ class Matricula extends Migration {
 			$table->date('fnacimiento');
 			$table->string('estado','1');
 			$table->primary('dni');
+
+			$table->timestamps();
 			// $table->unsignedBigInteger('user_id')->nullable();			
 			// $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
@@ -46,12 +51,11 @@ class Matricula extends Migration {
 			$table->bigincrements('id');
 			$table->string('estudiante_dni','8');
 			$table->string('plengua','45');
-			$table->string('slengua','45');
-			$table->string('ginstruccion','2');			
+			$table->string('slengua','45')->nullable();						
 			$table->string('religion');
 			$table->string('tipo_nacimiento','1');
-			$table->longtext('observaciones');
-			$table->string('tipo_discapacidad','2');
+			$table->longtext('observaciones')->nullable();
+			$table->string('tipo_discapacidad','2')->nullable();
 			$table->integer('nhermanos');
 			$table->integer('lugarhermanos');
 			$table->string('direccion');
