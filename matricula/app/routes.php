@@ -10,28 +10,41 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+//include_once 'routes_aldo';
 
-Route::get('/', function()
+Route::get('/login', 'AuthController@showLogin');
+
+Route::post('/login','AuthController@postLogin');
+
+Route::get('/logout', 'AuthController@logOut');
+
+// Route::get('/hola/', function()
+// {
+// 	return 'Hola a todos';
+// });
+
+// Route::get('/generar', function()
+// {
+//     $html = '<html><body>';
+//     $html.= '<p style="color:red">Generando un sencillo pdf ';
+//     $html.= 'de forma realmente sencilla.</p>';
+//     $html.= '</body></html>';
+//     return PDF::load($html, 'A4', 'landscape')->show();
+// });
+
+// Route::get('/login', function(){
+// 	return View::make('login');
+// });
+
+
+//Rutas para despues de logueo
+Route::group(array('before' => 'auth'), function()
 {
-	$html = View::make('layout');
-	return $html;
+    // Esta será nuestra ruta de bienvenida.
+    Route::get('/', function()
+    {
+        return View::make('hello');
+    });
+    // Esta ruta nos servirá para cerrar sesión.
+    Route::get('logout', 'AuthController@logOut');
 });
-
-<<<<<<< HEAD
-Route::controller('roles','RolController');
-
-=======
-Route::get('/hola/', function()
-{
-	return 'Hola a todos';
-});
-
-Route::get('/generar', function()
-{
-    $html = '<html><body>';
-    $html.= '<p style="color:red">Generando un sencillo pdf ';
-    $html.= 'de forma realmente sencilla.</p>';
-    $html.= '</body></html>';
-    return PDF::load($html, 'A4', 'landscape')->show();
-});
->>>>>>> 43db7716dfd3c821132ea9d8a1a6ef05e237c3cd

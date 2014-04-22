@@ -35,6 +35,8 @@ class CreateSoporte extends Migration {
 		Schema::create('aniosacademicos', function(Blueprint $table){
 			$table->bigincrements('id');
 			$table->string('anio','4');
+			$table->date('finicioclases');
+			$table->date('ffinclases');
 			$table->longtext('denominacion');			
 		});
 

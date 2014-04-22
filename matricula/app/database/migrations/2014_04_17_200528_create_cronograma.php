@@ -13,14 +13,14 @@ class CreateCronograma extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('cronograma', function(Blueprint $table)
+		Schema::create('cronogramas', function(Blueprint $table)
 			{
 				$table->bigincrements('id');
 				$table->unsignedBigInteger('anioacademico_id');
 				$table->date('finicio');
 				$table->date('ffin');
 				$table->date('finicioseguro');
-				$table->date('ffinseguro');
+				$table->date('ffinseguro');				
 
 				$table->foreign('anioacademico_id')->references('id')->on('aniosacademicos')->onUpdate('cascade')->onDelete('cascade');
 			});

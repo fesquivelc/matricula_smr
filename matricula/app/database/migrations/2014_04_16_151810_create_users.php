@@ -13,23 +13,26 @@ class CreateUsers extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('roles', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('nombre','45');
-			$table->longtext('descripcion')->nullable();
-		});
+		// Schema::create('roles', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+		// 	$table->string('nombre','45');
+		// 	$table->longtext('descripcion')->nullable();
+		// });
 
 		Schema::create('users', function(Blueprint $table)
 		{
 			$table->bigincrements('id');
-			$table->string('login','20');
-			$table->string('password','30');			
+			$table->string('username','30');
+			$table->string('password');
+			$table->string('email');
+			$table->string('remember_token','100')->nullable();
 			$table->boolean('activo')->default('false');
-			$table->unsignedInteger('rol_id');			
+			$table->boolean('admin')->default('false');
+			// $table->unsignedInteger('rol_id');			
 			$table->timestamps();
 
-			$table->foreign('rol_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+			// $table->foreign('rol_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
 		});		
 
 		

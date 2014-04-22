@@ -37,8 +37,8 @@ class Matricula extends Migration {
 			$table->date('fnacimiento');
 			$table->string('estado','1');
 			$table->primary('dni');
-			$table->unsignedBigInteger('user_id')->nullable();			
-			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+			// $table->unsignedBigInteger('user_id')->nullable();			
+			// $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
 		});
 
@@ -91,6 +91,15 @@ class Matricula extends Migration {
 			$table->foreign('seccion_id')->references('id')->on('secciones')->onDelete('cascade')->onUpdate('cascade');
 		});
 
+		Schema::create('deudas',function(Blueprint $table){
+			$table->bigincrements('id');
+			$table->string('mes','2');
+			$table->string('anio','4');
+			$table->string('estudiante_dni');
+
+			$table->foreign('estudiante_dni')->references('dni')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');
+		});
+
 	}
 
 	/**
@@ -101,6 +110,7 @@ class Matricula extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('deudas');
 		Schema::drop('matricula');
 		Schema::drop('estudiantes_familiares');
 		Schema::drop('familiares');
