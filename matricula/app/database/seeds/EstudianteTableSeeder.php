@@ -17,6 +17,8 @@ class EstudianteTableSeeder extends Seeder {
 			'fnacimiento' => '1994-06-28',
 			'estado' => 'D',					
 		));
+
+		
 	}
 
 }

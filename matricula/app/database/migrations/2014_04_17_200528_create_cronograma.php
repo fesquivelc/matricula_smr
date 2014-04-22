@@ -28,6 +28,7 @@ class CreateCronograma extends Migration {
 		Schema::create('requisitos', function(Blueprint $table)
 			{
 				$table->increments('id');
+				$table->string('nombre');
 				$table->longtext('descripcion');
 				$table->string('cond_estudiante','1'); //NUEVO O ANTIGUO POR EJM. LA PARTIDA ES PARA EST. NUEVOS
 				$table->boolean('vigente'); //SI ES QUE AUN SE APLICA ESTE TIPO DE DOCUMENTO

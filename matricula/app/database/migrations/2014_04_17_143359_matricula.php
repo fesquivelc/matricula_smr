@@ -87,6 +87,7 @@ class Matricula extends Migration {
 			$table->unsignedBigInteger('anio_id');
 			$table->unsignedBigInteger('seccion_id');
 			$table->string('apoderado_dni');
+			$table->boolean('seguro');
 
 
 			$table->foreign('estudiante_dni')->references('dni')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');
