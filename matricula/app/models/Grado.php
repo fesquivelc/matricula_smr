@@ -2,6 +2,7 @@
 class Grado extends Eloquent
 {
 	protected $table='grados';
+	public $timestamps = false;
 
 	public function secciones()
 	{

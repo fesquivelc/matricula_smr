@@ -35,7 +35,8 @@
 						{{ Form::submit('Ingresar', array('class' => 'btn btn-primary btn-lg btn-block')) }}
 					</div>
 					<div class="form-group">
-						{{ Form::submit('Nuevo estudiante', array('class' => 'btn btn-info btn-lg btn-block')) }}
+						<!-- {{ Form::submit('Nuevo estudiante', array('class' => 'btn btn-info btn-lg btn-block')) }} -->
+						<a href="{{url('/nuevo/estudiante/')}}" class="btn btn-info btn-lg btn-block">Nuevo Estudiante</a>
 					</div>                        
 
 					{{ Form::close() }}

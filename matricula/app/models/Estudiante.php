@@ -9,9 +9,10 @@ class Estudiante extends Eloquent{
 	 */
 	protected $table = 'estudiantes';
 	protected $primaryKey = 'dni';
+	public $timestamps = false;
 
 	public function familiares(){
-		return $this->belongsToMany('Profesor','estudiantes_familiares','estudiante_dni','familiar_dni');
+		return $this->belongsToMany('Familiar','estudiantes_familiares','estudiante_dni','familiar_dni')->withPivot('vcestudiante','parentesco','esapoderado');
 	}
 
 	public function ficha(){

@@ -45,17 +45,17 @@ Route::group(array('before' => 'auth'), function()
         return Redirect::to('/paso1');
     });
 
-    Route::get('/paso1','MatriculaController@showEstudiantes');
+    Route::get('/paso1','MatricularController@showEstudiantes');
 
-    Route::get('/paso2/{dni}', 'MatriculaController@showOperacion');
+    Route::get('/paso2/{dni}', 'MatricularController@showOperacion');
 
-    Route::get('/paso3', 'MatriculaController@showFicha');
+    Route::get('/paso3/{dni}', 'MatricularController@showFicha');
 
-    Route::post('/paso2', 'MatriculaController@postOperacion');
+    Route::post('/paso2', 'MatricularController@postOperacion');
 
-    Route::post('/paso3', 'MatriculaController@postFicha');
+    Route::post('/paso3', 'MatricularController@postFicha');
 
-    Route::get('/deudas/{dni}','MatriculaController@showDeudas');
+    Route::get('/deudas/{dni}','MatricularController@showDeudas');
     // Esta ruta nos servirá para cerrar sesión.
     Route::get('/logout', 'AuthController@logOut');
 });

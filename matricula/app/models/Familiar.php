@@ -9,6 +9,7 @@ class Familiar extends Eloquent{
 	 */
 	protected $table = 'familiares';
 	protected $primaryKey = 'dni';
+	public $timestamps = false;
 
 	public function estudiantes(){
 		return $this->belongsToMany('Estudiante','estudiantes_familiares','familiar_dni','estudiante_dni')->withPivot('vcestudiante','parentesco','esapoderado');

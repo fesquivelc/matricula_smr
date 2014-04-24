@@ -2,6 +2,7 @@
 class Nivel extends Eloquent
 {
 	protected $table='niveles';
+	public $timestamps = false;
 
 	public function grados()
 	{

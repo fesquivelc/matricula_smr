@@ -8,6 +8,7 @@ class Deuda extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'deudas';
+	public $timestamps = false;
 
 	public function estudiante(){
 		return $this->belongsTo('Estudiante','estudiante_dni');

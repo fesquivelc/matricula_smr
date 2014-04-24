@@ -33,17 +33,13 @@ Instrucciones
 @section('formularios')
 <table class="table table-hover" style="font-size:1.1em;">
 	<tr>
-		<th>Nombre</th>
-		<th>Nivel</th>
-		<th>Grado</th>
+		<th>Nombre</th>		
 		<th></th>
 	</tr>
 	
 	@foreach ($estudiantes as $estudiante)
 	<tr>
-		<td> {{$estudiante->appaterno;}} {{$estudiante->apmaterno;}} {{$estudiante->nombres;}}</td>
-		<td></td>
-		<td></td>
+		<td> {{$estudiante->appaterno;}} {{$estudiante->apmaterno;}} {{$estudiante->nombres;}}</td>		
 		<td>
 			@if($estudiante->estado == 'D')
 				<a href="{{url('/deudas/'.$estudiante->dni)}}" class="btn btn-danger btn-sm" role="button">Ver deudas</a>

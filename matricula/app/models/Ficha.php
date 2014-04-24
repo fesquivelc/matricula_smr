@@ -8,6 +8,7 @@ class Ficha extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'fichas';
+	public $timestamps = false;
 
 	public function estudiante(){
 		return $this->belongsTo('Estudiante','estudiante_dni');

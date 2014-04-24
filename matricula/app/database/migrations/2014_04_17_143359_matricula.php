@@ -21,7 +21,7 @@ class Matricula extends Migration {
 			$table->date('fnacimiento');
 			$table->string('ginstruccion','2');
 			$table->string('ocupacion','60');
-			$table->boolean('vive');
+			$table->boolean('vive')->default(true);
 			$table->string('direccion','250')->nullable();
 			$table->unsignedBigInteger('user_id')->nullable();			
 

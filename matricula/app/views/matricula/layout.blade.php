@@ -8,6 +8,7 @@
   @section('css')
   <!-- Bootstrap -->
   {{ HTML::style('assets/css/bootstrap.min.yeti.css', array('media' => 'screen')) }}
+  {{ HTML::style('assets/css/datepicker.css', array('media' => 'screen')) }}
   @show
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -47,7 +48,7 @@
           <!-- Default panel contents -->
           <div class="panel-heading"> @yield('titulo-panel') </div>
           <div class="panel-body">
-            <p> @yield('cuerpo-panel') </p>
+            <p> @yield('cuerpo-panel') </p>            
           </div>
         </div>
         @yield('formularios')
@@ -58,6 +59,8 @@
       {{ HTML::script('assets/js/jquery.min.js') }}
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       {{ HTML::script('assets/js/bootstrap.min.js') }}
+
+      {{HTML::script('assets/js/bootstrap-datepicker.js')}}
       @show
     </body>
     </html>

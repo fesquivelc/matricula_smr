@@ -8,6 +8,7 @@ class Distrito extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'distritos';
+	public $timestamps = false;
 
 	public function provincia(){
 		return $this->belongsTo('Provincia','provincia_id');

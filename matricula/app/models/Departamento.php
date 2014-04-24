@@ -8,6 +8,7 @@ class Departamento extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'departamentos';
+	public $timestamps = false;
 
 	public function provincias(){
 		return $this->hasMany('Provincia','departamento_id');

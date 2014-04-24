@@ -1,5 +1,6 @@
 <?php
 
+
 class Matricula extends Eloquent{
 
 	/**
@@ -8,13 +9,14 @@ class Matricula extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'matriculas';
+	public $timestamps = false;
 
 	public function estudiante(){
 		return $this->belongsTo('Estudiante','estudiante_dni');
 	}
 
 	public function anioacademico(){
-		return $this->belongsTo('AnioAcademico','anioacademico_id');
+		return $this->belongsTo('AnioAcademico','anio_id');
 	}
 
 	public function apoderado(){

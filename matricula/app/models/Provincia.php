@@ -8,6 +8,7 @@ class Provincia extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'provincias';
+	public $timestamps = false;
 
 	public function departamento(){
 		return $this->belongsTo('Departamento','departamento_id');

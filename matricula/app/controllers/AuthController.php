@@ -83,14 +83,16 @@ class AuthController extends \BaseController {
 	}
 
 	public function showLogin(){
+		Session::flush();
 		if(Auth::check())
-		{
-			Redirect::to('/');
+		{			
+			Redirect::to('/paso1');
 		}
 		return View::make('/login');
 	}
 
 	public function postLogin(){
+
 		$credentials = array(
 			'username' => Input::get('username'),
 			'password' => Input::get('password'),
@@ -106,7 +108,7 @@ class AuthController extends \BaseController {
             // De ser datos válidos nos mandara a la bienvenida
 			
 		}
-        // En caso de que la autenticación haya fallado manda un mensaje al formulario de login y también regresamos los valores enviados con withInput().
+        // En caso de que la autenticación haya fallado manda un mensaje al formulario de login y también regresamos los valores enviados con withInput().		
 		return Redirect::to('/login')
 		->with('mensaje_error', 'Tus datos son incorrectos o su nombre de usuario esta inactivo')
 		->withInput();
