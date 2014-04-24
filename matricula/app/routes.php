@@ -13,9 +13,11 @@
 */
 //include_once 'routes_aldo';
 
+/*
 Route::get('/login', 'AuthController@showLogin');
 
 Route::post('/login','AuthController@postLogin');
+*/
 
 // Route::get('/hola/', function()
 // {
@@ -37,7 +39,7 @@ Route::post('/login','AuthController@postLogin');
 
 
 //Rutas para despues de logueo
-Route::group(array('before' => 'auth'), function()
+/*Route::group(array('before' => 'auth'), function()
 {
     // Esta será nuestra ruta de bienvenida.
 
@@ -58,6 +60,9 @@ Route::group(array('before' => 'auth'), function()
     Route::get('/deudas/{dni}','MatriculaController@showDeudas');
     // Esta ruta nos servirá para cerrar sesión.
     Route::get('/logout', 'AuthController@logOut');
-});
+});*/
 
+Route::get('/','AdministracionController@showanioacademico');
+Route::post('/administracion/anioinicio','AdministracionController@ingresoAnio');
+Route::post('/administracion/anioiniciomod/{id}','AdministracionController@modificarAnioAcademico');
 ?>

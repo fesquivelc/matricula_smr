@@ -8,6 +8,7 @@ class AnioAcademico extends Eloquent{
 	 * @var string
 	 */
 	protected $table = 'aniosacademicos';
+	public $timestamps = false;
 
 	public function requisitosEstudiante(){
 		return $this->hasMany('RequisitoEstudiante','anioacademico_id');
