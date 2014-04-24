@@ -113,7 +113,7 @@ class Matricula extends Migration {
 	{
 		//
 		Schema::drop('deudas');
-		Schema::drop('matricula');
+		Schema::drop('matriculas');
 		Schema::drop('estudiantes_familiares');
 		Schema::drop('familiares');
 		Schema::drop('fichas');

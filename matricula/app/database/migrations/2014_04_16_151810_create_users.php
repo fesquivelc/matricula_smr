@@ -61,7 +61,7 @@ class CreateUsers extends Migration {
 		//
 		
 		Schema::drop('users');
-		Schema::drop('roles');
+
 	}
 
 }

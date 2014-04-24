@@ -17,7 +17,7 @@ class FamiliarTableSeeder extends Seeder {
 				'fnacimiento' => '1956-02-21',
 				'ginstruccion' => 'UN',
 				'ocupacion' => 'ING. AGRONOMO',
-				'estado' => 'V',								
+				'vive' => true,								
 			));
 
 		Familiar::create(array(
@@ -28,9 +28,9 @@ class FamiliarTableSeeder extends Seeder {
 				'fnacimiento' => '1957-12-21',
 				'ginstruccion' => 'UN',
 				'ocupacion' => 'CONTADOR PÚBLICO',
-				'estado' => 'V',				
+				'vive' => true,				
 			));
-		Familiar::create(array(
+		/*Familiar::create(array(
 				'dni' => '18033904',
 				'appaterno' => 'ESQUIVEL',
 				'apmaterno' => 'CUENCA',
@@ -38,9 +38,9 @@ class FamiliarTableSeeder extends Seeder {
 				'fnacimiento' => '1990-01-31',
 				'ginstruccion' => 'BA',
 				'ocupacion' => 'PROGRAMADOR',
-				'estado' => 'V',				
+				'vive' => true,				
 				'user_id' => '1',
-			));
+			));*/
 	}
 
 }
