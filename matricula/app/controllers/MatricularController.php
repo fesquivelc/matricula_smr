@@ -89,25 +89,27 @@ class MatricularController extends \BaseController {
 
 		$estudiantes = $apoderado->estudiantes;
 
+		
+
+
+
+		return View::make('matricula/matantpaso1',array('estudiantes'=>$estudiantes));
+	}
+
+	public function showDeudas($dni){
+		$estudiante = Estudiante::find($dni);
+
 		$anioanterior = AnioAcademico::where('anio','=',date('Y')-1)->first();
 		// return Matricula::where('estudiante_dni','=',$estudiante->dni)->get();
 		$matricula =  DB::table('matriculas')
 								->where('anio_id','=',$anioanterior->id)
 								->where('estudiante_dni','=',$estudiante->dni)->first();
 
-		$sigseccion = siguienteSeccion(Seccion::find($matricula->seccion_id));
-
-
-		return View::make('matricula/matantpaso1',array('estudiantes'=>$estudiantes,'sigseccion'=>$sigseccion));
-	}
-
-	public function showDeudas($dni){
-		$estudiante = Estudiante::find($dni);
-
 		$deudas = $estudiante->deudas; 
 
+		// $sigseccion = siguienteSeccion(Seccion::find($matricula->seccion_id));
 
-		return View::make('matricula/deudas', array('deudas' => $deudas,'estudiante' => $estudiante));
+		return View::make('matricula/deudas', array('deudas' => $deudas,'estudiante' => $estudiante/*,'sigseccion' => $sigseccion*/));
 	}
 
 	public function showOperacion($dni){

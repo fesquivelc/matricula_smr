@@ -25,10 +25,12 @@ Instrucciones
 @stop
 
 @section('cuerpo-panel')
-<p>Actualice los campos que considere necesarios</p>
+<p>A continuación digite el código de la operación bancaria de la matrícula.</p>
 <p><strong>DNI:</strong> {{$estudiante->dni}} </p>
 <p><strong>Nombres:</strong> {{$estudiante->nombres}} </p>
 <p><strong>Apellidos:</strong> {{$estudiante->appaterno}} {{$estudiante->apmaterno}} </p>
+<p><strong>Nivel:</strong></p>
+<p><strong>Grado:</strong></p>
 @stop
 
 @section('formularios')
@@ -36,11 +38,7 @@ Instrucciones
 {{Form::open(array('url'=>'/paso2'))}}
 <legend>Número de operación</legend>
 <div class="form-group">
-<!-- 	{{$hola = Session::get('estudiante')}}
-	{{$hola->ficha}}
-	{{$hola->familiares}}
-	{{$hola->save()}} -->
-<!-- {{ Form::label('usuario', 'Nombre de usuario') }} -->
+
 {{ Form::text('operacion', Input::old('operacion'), array('class' => 'form-control input-lg', 'placeholder' => 'Numero de operacion')) }}
 </div>
 

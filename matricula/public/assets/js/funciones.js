@@ -38,6 +38,10 @@ function mostrar_div(div)
 	div.style.display = 'block';
 }
 
-$('#madre_fnacimiento').datepicker();
+$('#madre_fnacimiento').datepicker({
+	format: 'yyyy-mm-dd'
+});
 
-$('#apoderado_fnacimiento').datepicker();
+$('#apoderado_fnacimiento').datepicker({
+	format: 'yyyy-mm-dd'
+});
