@@ -94,8 +94,9 @@ class AdministracionController extends BaseController {
 		return View::make('administracion/anioinicio',array('anioacademico'=>$anioacademico));
 	}
 
-	public function modificarAnioAcademico($id)
+	/*public function modificarAnioAcademico()
 	{
+		$id = Input::get('idanio');
 		$anioacademico = AnioAcademico::find($id)
 
 		$anioacademico->anio=Input::get('anio');
@@ -105,7 +106,7 @@ class AdministracionController extends BaseController {
 		$anioacademico->save();
 
 		return View::make('administracion/anioinicio',array('anioacademico'=>$anioacademico));
-	}
+	}*/
 	public function ingresoAnio()
 	{
 		$anioacademico = New AnioAcademico;
@@ -119,10 +120,71 @@ class AdministracionController extends BaseController {
 		return Redirect::to('/');	 
 	}
 
+	public function showCronograma()
+	{
+
+		$anioacademico = AnioAcademico::where('anio','=',date('Y'))->first();
+
+		if(is_null($anioacademico))
+		{
+			return "No hay datos del año";
+		}else
+		{
+			$cronograma = New Cronograma;
+			$cronograma = $anioacademico->cronograma;
+			if(is_null($cronograma))
+			{
+				return View::make('administracion/cronocreate', array('anioacademico'=>$anioacademico));
+				
+			}else
+			{
+				return View::make('administracion/cronoupdate', array('cronograma'=>$cronograma));
+				
+			}		
+		}
+	}
+
+	public function insertCronograma()
+	{
+		$cronograma = New Cronograma;
+
+		$cronograma->anioacademico_id=Input::get('anioacademico_id');
+		$cronograma->finicio=Input::get('ffinicio');
+		$cronograma->ffin=Input::get('ffin');
+		$cronograma->finicioseguro=Input::get('finicioseguro');
+		$cronograma->ffinseguro=Input::get('finicioseguro');
+		$cronograma->save();
+
+		return Redirect::to('/');
+	}
+
+	public function updateCronograma()
+	{	
+		$id=Input::get('cronograma');
+		$cronograma = Cronograma::find($id);
+
+		$cronograma->anioacademico_id=Input::get('anioacademico_id');
+		$cronograma->finicio=Input::get('ffinicio');
+		$cronograma->ffin=Input::get('ffin');
+		$cronograma->finicioseguro=Input::get('finicioseguro');
+		$cronograma->ffinseguro=Input::get('finicioseguro');
+		$cronograma->save();
+
+		return Redirect::to('/');
+	}
 	public function mostrarAlumnosMatriculados()
 	{
-		$alumnos= Alumnos::all();
+		$anioacademico = AnioAcademico::where('anio','=',date('Y'))->first();
+		$matriculas = New Matricula;
+		$matriculas = $anioacademico->matricula;
+		
 
-
+		if(is_null($matriculas))
+		{
+			return "no hay alumnos matriculados";
+		}else
+		{
+			return "hay alumnos matriculados";
+		}
 	}
 }

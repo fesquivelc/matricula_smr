@@ -31,13 +31,12 @@
 
         <div class="navbar navbar-inverse">
           <div class="navbar-header">
-            <a class="navbar-brand" href="" >Control Año Académico</a>
+            <a class="navbar-brand" href="" > @yield('tipo-control') </a>
           </div>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="{{url('/logout')}}">Cerrar sesión</a></li>            
             </ul>
-
           </div>
           
         </div>
@@ -50,9 +49,12 @@
           <div class="panel-heading"> @yield('titulo-panel') </div>
           <div class="panel-body">
             <p> @yield('cuerpo-panel') </p>
+            @yield('menu')
           </div>
+           
         </div>
         @yield('formularios')
+
       </div>
       
       @section('javascript')

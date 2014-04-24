@@ -4,6 +4,10 @@
 Sistema de Matricula SMR
 @stop
 
+@section('tipo-control')
+Cronogramas
+@stop
+
 @if(is_null($anioacademico))
 @section('pasos')
 Ingresa nuevo año
@@ -11,6 +15,7 @@ Ingresa nuevo año
 @else
 @section('pasos')
 ¿Modificiar fechas de inicio y termino de periodo escolar?
+@stop
 @endif
 
 @if(is_null($anioacademico))
@@ -53,8 +58,9 @@ Ingresa nuevo año
 	<td></td>
 	<td></td>
 	<td>
-		<a href="{{url('/administracion/anioiniciomod/'.$anioacademico->id)}}" class="btn btn-danger btn-sm" role="button">Actualizar</a>
+		<a href="{{url('/administracion/anioiniciomod)}}" class="btn btn-danger btn-sm" role="button">Actualizar</a>
 	</td>
 	</tr>
+	{{Form::hidden('idanio', $anioacademico->id)}}
 	@stop
 @endif

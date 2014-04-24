@@ -7,6 +7,8 @@ class Cronograma extends Eloquent{
 	 *
 	 * @var string
 	 */
+
+	public $timestamps = false;
 	protected $table = 'cronogramas';
 
 	public function anioacademico(){

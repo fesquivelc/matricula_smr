@@ -61,8 +61,20 @@ Route::post('/login','AuthController@postLogin');
     // Esta ruta nos servirá para cerrar sesión.
     Route::get('/logout', 'AuthController@logOut');
 });*/
-
+/*Route::get('/control',function()
+{
+    return View::make('view')
+});
 Route::get('/','AdministracionController@showanioacademico');
 Route::post('/administracion/anioinicio','AdministracionController@ingresoAnio');
-Route::post('/administracion/anioiniciomod/{id}','AdministracionController@modificarAnioAcademico');
+Route::get('/administracion/anioiniciomod','AdministracionController@modificarAnioAcademico');*/
+Route::get('/',function()
+{
+    return View::make('administracion/control');
+});
+Route::get('/cronograma', 'AdministracionController@showCronograma');
+Route::post('/nuevocronograma', 'AdministracionController@insertCronograma');
+Route::post('/actualizarcronograma', 'AdministracionController@updateCronograma');
+Route::get('/estudiantes','AdministracionController@mostrarAlumnosMatriculados');
+
 ?>
