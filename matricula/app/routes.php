@@ -62,8 +62,10 @@ Route::group(array('before' => 'auth'), function()
 
     Route::get('/pruebas',function(){
         $departamentos = Departamento::lists('nombre','id');
+        $niveles = Nivel::lists('nombre','id');
+        $niveles['0'] = '--Nivel--';
         $departamentos['0'] = '--Escoge un departamento--';
-        return View::make('combos',array('departamentos'=>$departamentos));
+        return View::make('combos',array('departamentos'=>$departamentos,'niveles'=>$niveles));
     });
 
     Route::post('/utilitario/ubigeo/provincias', 'UtilitarioController@showProvincias');
