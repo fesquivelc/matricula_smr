@@ -119,6 +119,42 @@ class UtilitarioController extends \BaseController {
 		}
 	}
 
+	public function showGrados(){
+		if(Request::ajax())
+		{
+			$idNivel = Input::get('idNivel');
+			$nivel = Nivel::find($idNivel);
+
+			$grados = $nivel->grados;
+
+			$html = "<option value='0'>--Grado--</option>";
+
+			foreach ($grados as $grado) {
+				$html.="<option value='".$grado->id."'>".$grado->descripcion."</option>";
+			}
+
+			return $html;
+		}
+	}
+
+	public function showSecciones(){
+		if(Request::ajax())
+		{
+			$idGrado = Input::get('idGrado');
+			$grado = Grado::find($idGrado);
+
+			$secciones = $grado->secciones;
+
+			$html = "<option value='0'>--Sección--</option>";
+
+			foreach ($secciones as $seccion) {
+				$html.="<option value='".$seccion->id."'>".$seccion->descripcion."</option>";
+			}
+
+			return $html;
+		}
+	}
+
 
 
 }

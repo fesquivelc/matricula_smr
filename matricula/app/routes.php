@@ -68,6 +68,8 @@ Route::group(array('before' => 'auth'), function()
 
     Route::post('/utilitario/ubigeo/provincias', 'UtilitarioController@showProvincias');
     Route::post('/utilitario/ubigeo/distritos', 'UtilitarioController@showDistritos');
+    Route::post('/utilitario/academico/grados', 'UtilitarioController@showGrados');
+    Route::post('/utilitario/academico/secciones', 'UtilitarioController@showSecciones');
     // Esta ruta nos servirá para cerrar sesión.
     Route::get('/logout', 'AuthController@logOut');    
 });

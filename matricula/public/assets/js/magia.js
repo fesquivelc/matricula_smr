@@ -1,11 +1,63 @@
-$(document).on('ready',cargar);
-$(document).on('ready',cargarProvincia);
-$(document).on('ready',cargarDistrito);
+//Ejemplos de como cargar =D 
 
-function cargar()
+// $(document).on('ready',cargarAcademico);
+// $(document).on('ready',cargarUbigeo);
+
+function cargarAcademico()
+{
+	$('#cboNiveles').on('change',cargarGrado);
+	$('#cboGrados').on('change',cargarSeccion);
+	cargarGrado();
+}
+
+function cargarUbigeo()
 {		
 	$('#cboDepartamentos').on('change',cargarProvincia);
 	$('#cboProvincias').on('change',cargarDistrito);
+	cargarProvincia();
+}
+
+
+
+function cargarDistrito()
+{
+	var idProvincia = $('#cboProvincias').val();
+	
+	$.ajax
+	({
+		type : 'POST',
+		url : '/utilitario/ubigeo/distritos',
+		traditional : true,
+		data : {idProvincia:idProvincia},
+		success : function(data){
+			$('#cboDistritos').html(data); //Se cargan los datos en un div determinado			
+		},
+		error: function(){
+			data = '<option value="0">--Escoja un distrito--</option>';
+			$('#cboDistritos').html(data);
+		}
+	});	
+}
+
+function cargarGrado()
+{
+	var idNivel = $('#cboNiveles').val();
+	
+	$.ajax
+	({
+		type : 'POST',
+		url : '/utilitario/academico/grados',
+		traditional : true,
+		data : {idNivel:idNivel},
+		success : function(data){
+			$('#cboGrados').html(data); //Se cargan los datos en un div determinado			
+		},
+		error: function(){
+			data = '<option value="0">--Grado--</option>';
+			$('#cboGrados').html(data);
+			cargarSeccion();
+		}
+	});	
 }
 
 function cargarProvincia()
@@ -31,22 +83,22 @@ function cargarProvincia()
 	
 }
 
-function cargarDistrito()
+function cargarSeccion()
 {
-	var idProvincia = $('#cboProvincias').val();
+	var idGrado = $('#cboGrados').val();
 	
 	$.ajax
 	({
 		type : 'POST',
-		url : '/utilitario/ubigeo/distritos',
+		url : '/utilitario/academico/secciones',
 		traditional : true,
-		data : {idProvincia:idProvincia},
+		data : {idGrado:idGrado},
 		success : function(data){
-			$('#cboDistritos').html(data); //Se cargan los datos en un div determinado			
+			$('#cboSecciones').html(data); //Se cargan los datos en un div determinado			
 		},
 		error: function(){
-			data = '<option value="0">--Escoja un distrito--</option>';
-			$('#cboDistritos').html(data);
+			data = '<option value="0">--Sección--</option>';
+			$('#cboSecciones').html(data);			
 		}
 	});	
 }
