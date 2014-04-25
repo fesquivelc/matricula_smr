@@ -9,9 +9,14 @@ class Grado extends Eloquent
 		return $this->hasMany('Seccion','grado_id');
 	}
 
-	public function niveles()
+	public function nivel()
 	{
-		return $this->belongsTo('niveles','nivel_id');
+		return $this->belongsTo('Nivel','nivel_id');
+	}
+
+	public function gradoAnterior()
+	{
+		return $this->hasOne('Grado','gradoant_id');
 	}
 }
 ?>

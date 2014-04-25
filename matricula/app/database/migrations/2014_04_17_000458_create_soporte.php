@@ -53,7 +53,10 @@ class CreateSoporte extends Migration {
 			$table->bigincrements('id');
 			$table->string('descripcion','200');
 			$table->unsignedBigInteger('nivel_id');
+			$table->unsignedBigInteger('gradoant_id')->nullable();
+
 			$table->foreign('nivel_id')->references('id')->on('niveles')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('gradoant_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
 		});
 
 		Schema::create('secciones', function(Blueprint $table)
@@ -61,7 +64,9 @@ class CreateSoporte extends Migration {
 			$table->bigincrements('id');
 			$table->string('descripcion','45');
 			$table->integer('capacidad');
-			$table->unsignedBigInteger('grado_id');			
+			$table->unsignedBigInteger('grado_id');
+
+			$table->unique('descripcion','grado_id');			
 			$table->foreign('grado_id')->references('id')->on('grados')->onDelete('cascade')->onUpdate('cascade');
 		});
 

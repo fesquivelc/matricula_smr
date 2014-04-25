@@ -10,9 +10,10 @@ Selección de estudiante
 
 @section('pasos')
 <ul class="nav nav-pills">
-  <li class="active"><a href="">1. Seleccionar alumno</a></li>
-  <li><a href="">2. Ingresar numero de operacion</a></li>
-  <li><a href="">3. Ficha de matrícula</a></li>
+	<li class="active"><a href="">1. Seleccionar alumno</a></li>
+	<li><a href="">2. Ingresar numero de operacion</a></li>
+	<li><a href="">3. Ficha de matrícula</a></li>
+	<li><a href="">4. Compromiso</a></li>
 </ul>
 @stop
 
@@ -42,9 +43,9 @@ Instrucciones
 		<td> {{$estudiante->appaterno;}} {{$estudiante->apmaterno;}} {{$estudiante->nombres;}}</td>		
 		<td>
 			@if($estudiante->estado == 'D')
-				<a href="{{url('/deudas/'.$estudiante->dni)}}" class="btn btn-danger btn-sm" role="button">Ver deudas</a>
+			<a href="{{url('/deudas/'.$estudiante->dni)}}" class="btn btn-danger btn-sm" role="button">Ver deudas</a>
 			@elseif($estudiante->estado == 'N')
-				<a href="{{url('/paso2/'.$estudiante->dni)}}" class="btn btn-primary btn-sm" role="button">Matricular</a>
+			<a href="{{url('/paso2/'.$estudiante->dni)}}" class="btn btn-primary btn-sm" role="button">Matricular</a>
 			@endif
 		</td>
 	</tr>

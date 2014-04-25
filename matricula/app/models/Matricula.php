@@ -26,4 +26,12 @@ class Matricula extends Eloquent{
 	public function seccion(){
 		return $this->belongsTo('Seccion','seccion_id');
 	}
+
+	public function scopeMatriculaActual($query,$dni){
+		$anio = AnioAcademico::where('anio','=',date('Y'))->first();
+
+		return $query->where('estudiante_dni','=',$dni)->where('anio_id','=',$anio->id);
+
+
+	}
 }

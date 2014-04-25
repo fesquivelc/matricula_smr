@@ -9,8 +9,7 @@ class Cronograma extends Eloquent{
 	 */
 
 	public $timestamps = false;
-	protected $table = 'cronogramas';
-	public $timestamps = false;
+	protected $table = 'cronogramas';	
 
 	public function anioacademico(){
 		return $this->belongsTo('AnioAcademico','anioacademico_id');

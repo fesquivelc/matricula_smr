@@ -82,6 +82,13 @@ class MatricularController extends \BaseController {
 		//
 	}
 
+	public function showCompromiso($dni){
+		$matricula = Matricula::MatriculaActual($dni)->first();
+		$estudiante = $matricula->estudiante;
+
+		return View::make('matricula/matantpaso4',array('estudiante'=>$estudiante,'matricula'=>$matricula));
+	}
+
 	public function showEstudiantes(){
 		$user = Auth::user();
 
@@ -99,23 +106,38 @@ class MatricularController extends \BaseController {
 	public function showDeudas($dni){
 		$estudiante = Estudiante::find($dni);
 
-		$anioanterior = AnioAcademico::where('anio','=',date('Y')-1)->first();
-		// return Matricula::where('estudiante_dni','=',$estudiante->dni)->get();
-		$matricula =  DB::table('matriculas')
-								->where('anio_id','=',$anioanterior->id)
-								->where('estudiante_dni','=',$estudiante->dni)->first();
+		
 
 		$deudas = $estudiante->deudas; 
 
 		// $sigseccion = siguienteSeccion(Seccion::find($matricula->seccion_id));
 
-		return View::make('matricula/deudas', array('deudas' => $deudas,'estudiante' => $estudiante/*,'sigseccion' => $sigseccion*/));
+		return View::make('matricula/deudas', array('deudas' => $deudas,'estudiante' => $estudiante));
 	}
 
 	public function showOperacion($dni){
 		$estudiante = Estudiante::find($dni);
+
+		$anioanterior = AnioAcademico::where('anio','=',date('Y')-1)->first();
+
+		// return Matricula::where('estudiante_dni','=',$estudiante->dni)->get();
+		$matricula =  DB::table('matriculas')
+								->where('anio_id','=',$anioanterior->id)
+								->where('estudiante_dni','=',$estudiante->dni)->first();
+
+		// return $matricula->seccion_id;
+
+		$seccionAnt = Seccion::find($matricula->seccion_id);
+
+		$grado = Grado::where('gradoant_id','=',$seccionAnt->grado->id)->first();
+
+		$seccion = Seccion::where('descripcion','=',$seccionAnt->descripcion)->where('grado_id','=',$grado->id)->first();
 		
-		return View::make('matricula/matantpaso2', array('estudiante' => $estudiante));
+		Session::put('grado', $grado->id);
+
+		Session::put('seccion', $seccion->id);
+
+		return View::make('matricula/matantpaso2', array('estudiante' => $estudiante,'seccionAnt'=>$seccionAnt,'grado'=>$grado));
 	}
 
 	public function postOperacion(){
@@ -126,13 +148,15 @@ class MatricularController extends \BaseController {
 
 		$anioacademico = AnioAcademico::where('anio','=',date('Y'))->first();
 
+		Session::put('anio', $anioacademico->id);
+
 		$estudiante = Estudiante::find($dni);
 
 		$reqEstudiante = new RequisitoEstudiante();
 
-		$reqEstudiante->motivo = $operacion;
+		$reqEstudiante->detalle = $operacion;
 
-		$reqEstudiante->presento = true;
+		$reqEstudiante->presento = false;
 
 		$reqEstudiante->estudiante()->associate($estudiante);
 
@@ -272,42 +296,49 @@ class MatricularController extends \BaseController {
 			A MATRICULAR
 		*/
 
-		//Vemos seccion anterior
-		$anioanterior = AnioAcademico::where('anio','=',date('Y')-1)->first();
-		// return Matricula::where('estudiante_dni','=',$estudiante->dni)->get();
-		$matriculaanterior =  DB::table('matriculas')
-								->where('anio_id','=',$anioanterior->id)
-								->where('estudiante_dni','=',$estudiante->dni)->first();
+		$requisito = Requisito::where('nombre','=','PAGO DE MATRICULA')->first();
+		$fecha = date('Y-m-d');
+		$seccion = Seccion::find(Session::get('seccion'));
+		$anioacademico = AnioAcademico::find(Session::get('anio'));
+		$matricula = new Matricula();
 
-		
-	}
+		$matricula->seccion()->associate($seccion);
+		$matricula->fecha = $fecha;
+		$matricula->estudiante()->associate($estudiante);
+		$matricula->apoderado()->associate($apoderado);
+		$matricula->anioacademico()->associate($anioacademico);
 
-	public function siguienteSeccion($seccion){
-		$grado = $seccion->grado->descripcion;
-		$nivel = $seccion->grado->nivel->nombre;
-		if(($grado != 'QUINTO') && ($grado != 'SEXTO'))
-		{
-			switch ($grado) {
-				case 'PRIMERO':
-					return array('SEGUNDO',$nivel);
-					break;
-				case 'SEGUNDO':
-					return array('TERCERO',$nivel);
-					break;
-				case 'TERCERO':
-					return array('CUARTO',$nivel);
-					break;
-				case 'CUARTO';
-					return array('QUINTO',$nivel);
-					break;
-			}
-		}else if($nivel == 'PRIMARIA')
-		{
-			if($grado == 'SEXTO'){
-				return array('PRIMERO','SECUNDARIA');
-			}elseif ($grado == 'QUINTO') {
-				return array('SEXTO',$nivel);
-			}
+		/*
+		VAMOS A COMPROBAR SI ES QUE SE HA CONFIRMADO EL PAGO EN EL BANCO DE LA NACION
+		*/
+		$pago = RequisitoEstudiante::where('estudiante_dni','=',$estudiante->dni)
+								->where('anioacademico_id','=',$anioacademico->id)
+								->where('requisito_id','=',$requisito->id)->first();
+
+		if($pago->presento){
+			$matricula->estado = 'E';
+		}else{
+			$matricula->estado = 'C';
 		}
+
+		if(strtotime($anioacademico->cronograma->ffinseguro)>= strtotime($fecha) && strtotime($fecha) >= strtotime($anioacademico->cronograma->finicioseguro))
+		{
+			$matricula->seguro = true;
+		}
+		else
+		{
+			$matricula->seguro = false;
+		}
+
+		if($matricula->save()){
+			Session::flush();	
+			Redirect::to('/paso4/'.$estudiante->dni);			
+		}
+		else
+		{
+			return 'ALUMNO NO MATRICULADO';
+		}
+
+
 	}
 }

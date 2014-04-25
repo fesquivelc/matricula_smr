@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Matricula extends Migration {
+class Matriculas extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -91,12 +91,15 @@ class Matricula extends Migration {
 			$table->foreign('apoderado_dni')->references('dni')->on('familiares')->onDelete('cascade')->onUpdate('cascade');
 			$table->foreign('anio_id')->references('id')->on('aniosacademicos')->onDelete('cascade')->onUpdate('cascade');
 			$table->foreign('seccion_id')->references('id')->on('secciones')->onDelete('cascade')->onUpdate('cascade');
+
+			$table->unique('estudiante_dni','anio_id');
 		});
 
 		Schema::create('deudas',function(Blueprint $table){
 			$table->bigincrements('id');
 			$table->string('mes','2');
 			$table->string('anio','4');
+			$table->boolean('pagada')->default(false);
 			$table->string('estudiante_dni');
 
 			$table->foreign('estudiante_dni')->references('dni')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');

@@ -13,6 +13,7 @@ Selección de estudiante
 	<li><a href="">1. Seleccionar alumno</a></li>
 	<li><a href="">2. Ingresar numero de operacion</a></li>
 	<li class="active"><a href="">3. Datos de estudiante</a></li>
+	<li><a href="">4. Compromiso</a></li>
 </ul>
 @stop
 
